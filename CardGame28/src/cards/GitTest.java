@@ -5,6 +5,7 @@ public class GitTest {
 		System.out.println("Git is cool");
 		System.out.println("online edit");
 		System.out.println("online edit accepted");
+		System.out.println("new edit accepted");
 		
 	}
 
