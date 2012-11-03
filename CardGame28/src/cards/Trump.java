@@ -1,7 +1,7 @@
 package cards;
 
 public class Trump {
-	int currentHightestBid;
+	int currentHightestBid =0;
 	Player bidOwner;
 	
 	

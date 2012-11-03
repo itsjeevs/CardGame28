@@ -39,17 +39,13 @@ public class Game {
 		}
 	}
 	
+
 	
-	public void startGame() {
-		if(this.numPlayersInGame()<4) {
+	private void startGame() {
+		
+		if(this.numPlayersInGame() != 4){
 			return;
 		}
-		else{
-			this.initiateGame();
-		}
-	}
-	
-	private void initiateGame() {
 		
 		//generate a new deck. 
 		Deck deck = new Deck();
@@ -72,6 +68,21 @@ public class Game {
 		playersInTheGame.add(player);
 		
 		
+		bid(playersInTheGame);
+	
+		
+		for(Player p:playersInTheGame){
+			playerTurn.setCurrentPlayer(p);
+			while(true){
+				break;
+			}
+		}
+		
+	}
+	
+
+	private void bid(Queue<Player> playersInTheGame) {
+
 		for(Player p:playersInTheGame){
 			playerTurn.setCurrentPlayer(p);
 			while(true){
@@ -79,11 +90,8 @@ public class Game {
 					continue;
 				}
 			}
-		}
-		
+		}		
 	}
-	
-	
 
 	public int numPlayersInGame(){
 		return playersInTheGame.size();
