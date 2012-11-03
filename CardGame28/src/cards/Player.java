@@ -2,6 +2,14 @@ package cards;
 
 public class Player {
 
+	public Player(String name, Hand myHand, int points, Team team) {
+		super();
+		this.name = name;
+		this.myHand = myHand;
+		this.points = points;
+		this.team = team;
+	}
+
 	private String name;
 	
 	private Hand myHand;
