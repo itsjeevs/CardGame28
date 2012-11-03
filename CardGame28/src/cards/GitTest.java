@@ -1,7 +1,7 @@
 package cards;
 
 public class GitTest {
-	public void checker(String[] args) {
+	public static void main(String[] args) {
 		System.out.println("Git is cool");
 		System.out.println("online edit");
 		System.out.println("online edit accepted");

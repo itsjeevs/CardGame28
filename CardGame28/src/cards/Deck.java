@@ -1,16 +1,18 @@
 package cards;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-import javax.print.attribute.HashAttributeSet;
-
-public class Deck implements Iterator{
-	protected ArrayList myCardList;
+public class Deck implements Iterator<Object> {
+	protected ArrayList<Card> myCardList;
 	protected int myIndex;
 	
 	
 	public Deck(){
-		myCardList = new ArrayList();
+		myCardList = new ArrayList<Card>();
 	
 		for(int suit = ICard.SPADES; suit <= ICard.CLUBS; suit++){
 			for (int rank = 0; rank <8; rank++){
@@ -39,6 +41,7 @@ public class Deck implements Iterator{
 		throw new UnsupportedOperationException();
 	}
 }
+
 
 
 
@@ -76,7 +79,7 @@ class Card implements ICard{
 		
 		mySuit = suit;
 		myRank = rank;
-		myvalue = valueMap.get((rankStrings[rank]));
+		myvalue = valueMap.get((rank));
 		
 		cardDesc = rankStrings[getRank()]+" of "+
 	             suitStrings[getSuit()];
