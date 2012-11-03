@@ -46,4 +46,13 @@ public class Player {
 		this.points = points;
 	}
 	
+	public boolean isMyTurn(PlayerTurn playerTurn){
+		if (this == playerTurn.getCurrentPlayer()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 }

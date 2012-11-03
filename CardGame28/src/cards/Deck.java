@@ -20,13 +20,15 @@ public class Deck implements Iterator<Object> {
 		shuffle();
 	}
 	
-	public void printAll(){
+	public String printAll(){
 		Deck deck ;
 		deck = this;
+		String fullString = "";
 		while(deck.hasNext()){
 			Card card = (Card) deck.next();
-			System.out.println(card.toString());
+			fullString = fullString+ " \n "+card.toString();
 		}
+		return fullString;
 	}
 	protected void shuffle(){
 		Collections.shuffle(myCardList);
