@@ -8,7 +8,12 @@ public class Team {
 	
 	private int totalPoints;
 	
-	private ArrayList<Player> players;
+	public Team(String teamName, int totalPoints) {
+		super();
+		this.teamName = teamName;
+		this.totalPoints = totalPoints;
+	}
+
 
 	public String getTeamName() {
 		return teamName;
@@ -26,24 +31,6 @@ public class Team {
 		this.totalPoints = totalPoints;
 	}
 
-	public ArrayList<Player> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(ArrayList<Player> players) {
-		this.players = players;
-	}
-	
-	
-	public Team addPlayer(Player p) {
-		
-		if(this.players.size() < 2) {
-			this.players.add(p);
-		} else {
-			//Need to throw an exception
-		}
-		return this;
-	}
 	
 	public int getTotalPoints(ArrayList<Card> ourCards) {
 		

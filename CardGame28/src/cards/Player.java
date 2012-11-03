@@ -2,21 +2,25 @@ package cards;
 
 public class Player {
 
-	public Player(String name, Hand myHand, int points, Team team) {
+	public Player(String name, int points) {
 		super();
 		this.name = name;
-		this.myHand = myHand;
 		this.points = points;
-		this.team = team;
+		
 	}
 
 	private String name;
-	
 	private Hand myHand;
-	
 	private int points;
-	
 	private Team team;
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 
 	public String getName() {
 		return name;
@@ -40,14 +44,6 @@ public class Player {
 
 	public void setPoints(int points) {
 		this.points = points;
-	}
-
-	public Team getTeam() {
-		return team;
-	}
-
-	public void setTeam(Team team) {
-		this.team = team;
 	}
 	
 }

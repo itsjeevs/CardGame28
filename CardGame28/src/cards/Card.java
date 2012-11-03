@@ -36,7 +36,7 @@ class Card implements ICard{
 		
 		mySuit = suit;
 		myRank = rank;
-		myvalue = valueMap.get((rank));
+		myvalue = valueMap.get(rankStrings[(rank)]);
 		
 		cardDesc = rankStrings[getRank()]+" of "+
 	             suitStrings[getSuit()];
