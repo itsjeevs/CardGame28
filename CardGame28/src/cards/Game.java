@@ -13,13 +13,17 @@ public class Game {
 	Trump trump ;
 	PlayerTurn playerTurn ;
 	Deck deck;
-	
+	int gameId;
+	Team team1;
+	Team team2;
 	
 	public Game(){
 		playersInTheGame = new LinkedList<Player>();
 		trump = new Trump();
 		playerTurn = new PlayerTurn();
 		deck= new Deck() ;
+		team1= new Team("Team1", 0);
+		team2= new Team("Team2", 0);
 	}
 	
 	
@@ -36,6 +40,12 @@ public class Game {
 	public int joinGame(Player player) {
 		if(playersInTheGame.size()<=4) {
 			playersInTheGame.add(player);
+			
+			if (playersInTheGame.size() % 2 == 0) {
+				player.setTeam(team1);
+			} else {
+				player.setTeam(team2);
+			}
 		} 
 			return numPlayersInGame();
 	}

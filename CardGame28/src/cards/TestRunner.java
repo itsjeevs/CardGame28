@@ -25,14 +25,13 @@ public class TestRunner {
 		for (int i = 1; i <= 4; i++) {
 			String player = "Player" + i;
 			Player aPlayer = new Player(player, 0);
-			if (i % 2 == 0) {
-				aPlayer.setTeam(team1);
-			} else {
-				aPlayer.setTeam(team2);
-			}
 			game.joinGame(aPlayer);
+			
+			if(game.getPlayersInTheGame().contains(aPlayer)){
+				System.out.println("added player"+aPlayer.getName());
+			}
 		}
-
+		
 		do {
 		} while (!game.canStartGame());
 
@@ -83,9 +82,9 @@ public class TestRunner {
 
 		game.deal();
 
-		for (Player player : players) {
-			player.printPlayer();
-		}
+//		for (Player player : players) {
+//			player.printPlayer();
+//		}
 
 	}
 
