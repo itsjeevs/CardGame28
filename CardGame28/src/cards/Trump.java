@@ -1,7 +1,7 @@
 package cards;
 
 public class Trump {
-	int currentHightestBid =0;
+	int currentHightestBid ;
 	Player bidOwner;
 	
 	
@@ -11,6 +11,7 @@ public class Trump {
 	}
 	
 	public void setCurrentHightestBid(int currentHightestBid) {
+		
 		if(this.currentHightestBid<currentHightestBid){
 			this.currentHightestBid = currentHightestBid;
 		}
@@ -22,9 +23,11 @@ public class Trump {
 	public Player getBidOwner() {
 		return bidOwner;
 	}
+	
 	public void setBidOwner(Player bitOwner) {
 		this.bidOwner = bitOwner;
 	}
+	
 	public Trump(int currentHightestBid, Player bitOwner) {
 		super();
 		this.currentHightestBid = currentHightestBid;
@@ -33,7 +36,7 @@ public class Trump {
 	
 	
 	public Trump() {
-		this.currentHightestBid = 0;
+		this.currentHightestBid =13;
 		this.bidOwner = new Player("RandomPlayerGeneratedAtTrump", 0);
 	}
 	

@@ -5,11 +5,9 @@ import java.util.ArrayList;
 public class Team {
 
 	private String teamName;
-	
 	private int totalPoints;
 	
 	public Team(String teamName, int totalPoints) {
-		super();
 		this.teamName = teamName;
 		this.totalPoints = totalPoints;
 	}
@@ -40,6 +38,6 @@ public class Team {
 		}
 		
 		return total;
-	}
+	}	
 	
 }

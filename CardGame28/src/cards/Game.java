@@ -67,7 +67,7 @@ public class Game {
 		playersInTheGame.add(player);
 		
 		
-		bid(playersInTheGame);
+		
 		
 		//Initiate Deal phase 1. Give 4 cards to each player. 
 		for(int i=0;i<4;i++){
@@ -90,31 +90,16 @@ public class Game {
 	}  
 	
 
-	private void bid(Queue<Player> playersInTheGame) {
+	public void bid(Player p, int inputTrumpValue) {
 
-		for(Player p:playersInTheGame){
-			playerTurn.setCurrentPlayer(p);
-			System.out.println("Now bid:"+p.toString());
-			System.out.println("Enter Bid: ");
-			int trumpValue=0;
-				
-				try {
-				       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-				       trumpValue = Integer.parseInt(br.readLine());
-				       
-				     } 
-				     catch (IOException e) {
-				       System.err.println("Error: " + e);
-				     }
-				trump.setBidOwner(p);
-				trump.setCurrentHightestBid(trumpValue);
-				
-				if(trump.getBidOwner().equals(p) && trump.getCurrentHightestBid()>=14){
-					System.out.println("inside");
-					continue;
-				}
+		if (inputTrumpValue == 100) {
+			System.out.println(p.getName() + " folded");
+		} else {
+			trump.setBidOwner(p);
+			trump.setCurrentHightestBid(inputTrumpValue);
+			System.out.println("Bid of " + trump.getCurrentHightestBid() + " by " + trump.getBidOwner());
 			
-		}		
+		}
 	}
 
 	public int numPlayersInGame(){
@@ -132,21 +117,56 @@ public class Game {
 	}
 
 	
+	public Trump getTrump() {
+		return trump;
+	}
+
+
+	public void setTrump(Trump trump) {
+		this.trump = trump;
+	}
 	
-	
+
+	public PlayerTurn getPlayerTurn() {
+		return playerTurn;
+	}
+
+
+	public void setPlayerTurn(PlayerTurn playerTurn) {
+		this.playerTurn = playerTurn;
+	}
+
+
+	public boolean isValidBid(int inputTrumpValue, boolean firstRoundDone){
+		
+		//during first round= mandatory bid
+		if (!firstRoundDone) {
+			if (inputTrumpValue >= 14 && inputTrumpValue <= 28)
+				return true;
+			else
+				return false;
+		} else{
+			if (inputTrumpValue > this.getTrump().getCurrentHightestBid() )
+				return true;
+			else
+				return false;
+		}
+	}
+
+
 	
 }
 
 
 class PlayerTurn{
-	public static Player currentPlayer ;
+	public  Player currentPlayer ;
 
-	public static Player getCurrentPlayer() {
+	public  Player getCurrentPlayer() {
 		return currentPlayer;
 	}
 
-	public static void setCurrentPlayer(Player currentPlayer) {
-		PlayerTurn.currentPlayer = currentPlayer;
+	public void setCurrentPlayer(Player currentPlayer) {
+		currentPlayer = currentPlayer;
 	}
 	
 	

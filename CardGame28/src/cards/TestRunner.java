@@ -1,5 +1,8 @@
 package cards;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,22 +15,19 @@ public class TestRunner {
 	 */
 	public static void main(String[] args) {
 		Deck aDeck = new Deck();
-		
-		List<Team> teamList = new ArrayList<Team>(); 
+
+		List<Team> teamList = new ArrayList<Team>();
 		Team team1 = new Team("Team1", 0);
 		Team team2 = new Team("Team2", 0);
-		
+
 		Game game = new Game();
-		
-		
-		for(int i=1; i<=4;i++){
-			String player= "Player"+ i;
+
+		for (int i = 1; i <= 4; i++) {
+			String player = "Player" + i;
 			Player aPlayer = new Player(player, 0);
-			
-			if(i%2==0){
+			if (i % 2 == 0) {
 				aPlayer.setTeam(team1);
-			}
-			else{
+			} else {
 				aPlayer.setTeam(team2);
 			}
 			game.joinGame(aPlayer);
@@ -35,11 +35,52 @@ public class TestRunner {
 		
 		game.startGame();
 		
-		LinkedList<Player> players = (LinkedList<Player> ) game.getPlayersInTheGame();
-		for(Player player : players){
-			player.printPlayer();
-		}
+		System.out.print("Min Bid:");
+		System.out.println(game.getTrump().getCurrentHightestBid()+1);
+		LinkedList<Player> players = (LinkedList<Player>) game.getPlayersInTheGame();
 		
-	}
+		
+		boolean firstRoundDone = false;
+		for (Player p : players) {
+			
+			if (firstRoundDone) {
+				if (game.getTrump().getBidOwner().getTeam().equals(p.getTeam())) {
+					System.out.println("Bid Placed by team member");
+					continue;
+				}
+			}
+			
+			game.getPlayerTurn().setCurrentPlayer(p);
+			System.out.println("Now bid:" + p.getName());
+			System.out.println("Enter Bid: ");
+			int inputTrumpValue =0;
+			try {
+				do {
+					BufferedReader br = new BufferedReader(	new InputStreamReader(System.in));
+					String input = "";
+					input = br.readLine();
+						if(input.length() == 0 ) continue;
+						
+					inputTrumpValue = Integer.parseInt(input);
+				}while ( !game.isValidBid(inputTrumpValue,firstRoundDone));
 
+			} catch (IOException e) {
+				System.err.println("Error: " + e);
+			}
+			
+			game.bid(p,inputTrumpValue);
+			inputTrumpValue =0;
+			if(!firstRoundDone)
+				firstRoundDone = true;
+			
+//			for (Player player : players) {
+//				player.printPlayer();
+//			}
+
+		}
+
+	}
+	
+
+	
 }
