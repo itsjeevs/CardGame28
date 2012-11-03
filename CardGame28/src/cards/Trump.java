@@ -3,7 +3,7 @@ package cards;
 public class Trump {
 	int currentHightestBid ;
 	Player bidOwner;
-	
+	Card trumpCard;
 	
 	
 	public int getCurrentHightestBid() {
@@ -18,6 +18,10 @@ public class Trump {
 		else{
 			return;
 		}
+	}
+	
+	public void returnTrumpToOwner(){
+		bidOwner.getMyHand().addCard(trumpCard);
 	}
 	
 	public Player getBidOwner() {

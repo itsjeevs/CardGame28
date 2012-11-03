@@ -1,11 +1,14 @@
 package cards;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
+
+
+enum GameStatus{
+	WAIT,
+	BID,
+	PLAY;
+}
 
 public class Game {
 
@@ -16,7 +19,19 @@ public class Game {
 	int gameId;
 	Team team1;
 	Team team2;
+	GameStatus status;
 	
+	
+	public GameStatus getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(GameStatus status) {
+		this.status = status;
+	}
+
+
 	public Game(){
 		playersInTheGame = new LinkedList<Player>();
 		trump = new Trump();
@@ -139,6 +154,38 @@ public class Game {
 				return false;
 		}
 	}
+
+
+	
+	public int getGameId() {
+		return gameId;
+	}
+
+
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
+	}
+
+
+	public Team getTeam1() {
+		return team1;
+	}
+
+
+	public void setTeam1(Team team1) {
+		this.team1 = team1;
+	}
+
+
+	public Team getTeam2() {
+		return team2;
+	}
+
+
+	public void setTeam2(Team team2) {
+		this.team2 = team2;
+	}
+
 
 
 	

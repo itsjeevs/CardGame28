@@ -21,8 +21,13 @@ class Card implements ICard{
 	};
 
 	
-	
-	
+	public Card() {
+		this.myvalue= 0;
+		this.mySuit = 0;
+		this.myRank = 0;
+		this.cardDesc = "";
+	}
+
 	public Card(int suit, int rank){
 		Map<String, Integer> valueMap = new HashMap<String, Integer>();
 		valueMap.put(rankStrings[0], 3);

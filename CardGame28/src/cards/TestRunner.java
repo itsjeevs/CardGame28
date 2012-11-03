@@ -15,13 +15,14 @@ public class TestRunner {
 	 */
 	public static void main(String[] args) {
 		Deck aDeck = new Deck();
-
+		
 		List<Team> teamList = new ArrayList<Team>();
 		Team team1 = new Team("Team1", 0);
 		Team team2 = new Team("Team2", 0);
 
 		Game game = new Game();
-
+		game.setStatus(GameStatus.WAIT);
+		
 		for (int i = 1; i <= 4; i++) {
 			String player = "Player" + i;
 			Player aPlayer = new Player(player, 0);
@@ -36,6 +37,7 @@ public class TestRunner {
 		} while (!game.canStartGame());
 
 		game.deal();
+		game.setStatus(GameStatus.BID);
 
 		game.rotateOnce();
 
