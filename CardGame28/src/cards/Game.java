@@ -52,7 +52,7 @@ public class Game {
 		
 		Player player = playersInTheGame.remove();
 		
-		//Initiate a phase 1. Give 4 cards to each player. 
+		//Initiate Deal phase 1. Give 4 cards to each player. 
 		for(int i=0;i<16;i++){
 			Hand hand = new Hand();
 			for(int j =0; j<4;j++){
@@ -69,7 +69,17 @@ public class Game {
 		
 		
 		bid(playersInTheGame);
-	
+		
+		//Initiate Deal phase 1. Give 4 cards to each player. 
+		for(int i=0;i<16;i++){
+			Hand hand = new Hand();
+			for(int j =0; j<4;j++){
+				Card card = (Card) deck.next();
+				hand.addCard(card);
+			}
+			player.setMyHand(hand);
+			
+		}		
 		
 		for(Player p:playersInTheGame){
 			playerTurn.setCurrentPlayer(p);
