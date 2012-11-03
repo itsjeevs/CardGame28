@@ -1,5 +1,8 @@
 package cards;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -58,7 +61,7 @@ public class Game {
 			playersInTheGame.add(player);			
 		}
 		
-/*
+
 		//so that the first player in the queue now- is the one next to player1. 
 		player = playersInTheGame.remove();
 		playersInTheGame.add(player);
@@ -67,7 +70,7 @@ public class Game {
 		bid(playersInTheGame);
 		
 		//Initiate Deal phase 1. Give 4 cards to each player. 
-		for(int i=0;i<16;i++){
+		for(int i=0;i<4;i++){
 			Hand hand = new Hand();
 			for(int j =0; j<4;j++){
 				Card card = (Card) deck.next();
@@ -76,7 +79,7 @@ public class Game {
 			player.setMyHand(hand);
 			
 		}		
-		
+/*		
 		for(Player p:playersInTheGame){
 			playerTurn.setCurrentPlayer(p);
 			while(true){
@@ -84,18 +87,33 @@ public class Game {
 			}
 		}
 		*/
-	}
+	}  
 	
 
 	private void bid(Queue<Player> playersInTheGame) {
 
 		for(Player p:playersInTheGame){
 			playerTurn.setCurrentPlayer(p);
-			while(true){
+			System.out.println("Now bid:"+p.toString());
+			System.out.println("Enter Bid: ");
+			int trumpValue=0;
+				
+				try {
+				       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				       trumpValue = Integer.parseInt(br.readLine());
+				       
+				     } 
+				     catch (IOException e) {
+				       System.err.println("Error: " + e);
+				     }
+				trump.setBidOwner(p);
+				trump.setCurrentHightestBid(trumpValue);
+				
 				if(trump.getBidOwner().equals(p) && trump.getCurrentHightestBid()>=14){
+					System.out.println("inside");
 					continue;
 				}
-			}
+			
 		}		
 	}
 

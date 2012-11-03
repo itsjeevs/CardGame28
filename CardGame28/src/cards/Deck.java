@@ -30,6 +30,8 @@ public class Deck implements Iterator<Object> {
 		}
 		return fullString;
 	}
+	
+	
 	protected void shuffle(){
 		Collections.shuffle(myCardList);
 		myIndex = 0;
