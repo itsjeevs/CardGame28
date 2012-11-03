@@ -12,11 +12,14 @@ public class Game {
 	private Queue<Player> playersInTheGame;
 	Trump trump ;
 	PlayerTurn playerTurn ;
+	Deck deck;
+	
 	
 	public Game(){
 		playersInTheGame = new LinkedList<Player>();
 		trump = new Trump();
 		playerTurn = new PlayerTurn();
+		deck= new Deck() ;
 	}
 	
 	
@@ -26,6 +29,7 @@ public class Game {
 		
 		playersInTheGame = new LinkedList<Player>();
 		playersInTheGame.add(player);
+		deck= new Deck() ;
 	}
 	
 	
@@ -44,20 +48,15 @@ public class Game {
 			return;
 		}
 		
-		//generate a new deck. 
-		Deck deck = new Deck();
-		
 		Player player;
 		
 		//Initiate Deal phase 1. Give 4 cards to each player. 
 		for(int i=0;i<4;i++){
 			player = playersInTheGame.remove();
-			Hand hand = new Hand();
 			for(int j =0; j<4;j++){
 				Card card = (Card) deck.next();
-				hand.addCard(card);
+				player.getMyHand().addCard(card);
 			}
-			player.setMyHand(hand);
 			playersInTheGame.add(player);			
 		}
 		

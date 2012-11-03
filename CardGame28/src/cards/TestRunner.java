@@ -43,12 +43,6 @@ public class TestRunner {
 		boolean firstRoundDone = false;
 		for (Player p : players) {
 			
-			if (firstRoundDone) {
-				if (game.getTrump().getBidOwner().getTeam().equals(p.getTeam())) {
-					System.out.println("Bid Placed by team member");
-					continue;
-				}
-			}
 			
 			game.getPlayerTurn().setCurrentPlayer(p);
 			System.out.println("Now bid:" + p.getName());
@@ -67,7 +61,12 @@ public class TestRunner {
 			} catch (IOException e) {
 				System.err.println("Error: " + e);
 			}
-			
+			if (firstRoundDone) {
+				if (game.getTrump().getBidOwner().getTeam().equals(p.getTeam()) && inputTrumpValue <18 ) {
+					System.out.println("Bid Placed by team member");
+					continue;
+				}
+			}
 			game.bid(p,inputTrumpValue);
 			inputTrumpValue =0;
 			if(!firstRoundDone)

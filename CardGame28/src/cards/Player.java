@@ -8,7 +8,7 @@ public class Player {
 		super();
 		this.name = name;
 		this.points = points;
-		
+		myHand = new Hand();
 	}
 	
 	private String name;

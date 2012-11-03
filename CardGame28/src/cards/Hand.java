@@ -21,4 +21,8 @@ public class Hand {
 	public ArrayList<Card> getMyCards() {
 		return myHand;
 	}
+	
+	public int numCardsInHand(){
+		return myHand.size();
+	}
 }
