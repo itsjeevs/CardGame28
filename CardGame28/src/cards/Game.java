@@ -2,6 +2,7 @@ package cards;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 
 enum GameStatus{
@@ -33,6 +34,9 @@ public class Game {
 
 
 	public Game(){
+		Random r = new Random();
+		gameId = r.nextInt(1001);
+		
 		playersInTheGame = new LinkedList<Player>();
 		trump = new Trump();
 		playerTurn = new PlayerTurn();
@@ -43,6 +47,9 @@ public class Game {
 	
 	
 	public Game(Player player) {
+		Random r = new Random();
+		gameId = r.nextInt(1001);
+		
 		trump = new Trump();
 		playerTurn = new PlayerTurn();
 		
