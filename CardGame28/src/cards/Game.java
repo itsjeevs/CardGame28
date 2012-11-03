@@ -40,17 +40,23 @@ public class Game {
 			return numPlayersInGame();
 	}
 	
-
+	public void rotateOnce(){
+		//so that the first player in the queue now- is the one next to player1. 
+		Player player = playersInTheGame.remove();
+		playersInTheGame.add(player);
+	}
 	
-	public void startGame() {
+	public boolean canStartGame() {
 		
 		if(this.numPlayersInGame() != 4){
-			return;
-		}
-		
+			return false;
+		}		
+		else 
+			return true;
+	}		  
+	
+	public void deal(){
 		Player player;
-		
-		//Initiate Deal phase 1. Give 4 cards to each player. 
 		for(int i=0;i<4;i++){
 			player = playersInTheGame.remove();
 			for(int j =0; j<4;j++){
@@ -59,35 +65,7 @@ public class Game {
 			}
 			playersInTheGame.add(player);			
 		}
-		
-
-		//so that the first player in the queue now- is the one next to player1. 
-		player = playersInTheGame.remove();
-		playersInTheGame.add(player);
-		
-		
-		
-		
-		//Initiate Deal phase 1. Give 4 cards to each player. 
-		for(int i=0;i<4;i++){
-			Hand hand = new Hand();
-			for(int j =0; j<4;j++){
-				Card card = (Card) deck.next();
-				hand.addCard(card);
-			}
-			player.setMyHand(hand);
-			
-		}		
-/*		
-		for(Player p:playersInTheGame){
-			playerTurn.setCurrentPlayer(p);
-			while(true){
-				break;
-			}
-		}
-		*/
-	}  
-	
+	}
 
 	public void bid(Player p, int inputTrumpValue) {
 

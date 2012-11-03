@@ -32,54 +32,61 @@ public class TestRunner {
 			}
 			game.joinGame(aPlayer);
 		}
-		
-		game.startGame();
-		
+
+		do {
+		} while (!game.canStartGame());
+
+		game.deal();
+
+		game.rotateOnce();
+
 		System.out.print("Min Bid:");
-		System.out.println(game.getTrump().getCurrentHightestBid()+1);
-		LinkedList<Player> players = (LinkedList<Player>) game.getPlayersInTheGame();
-		
-		
+		System.out.println(game.getTrump().getCurrentHightestBid() + 1);
+		LinkedList<Player> players = (LinkedList<Player>) game
+				.getPlayersInTheGame();
+
 		boolean firstRoundDone = false;
 		for (Player p : players) {
-			
-			
+
 			game.getPlayerTurn().setCurrentPlayer(p);
 			System.out.println("Now bid:" + p.getName());
 			System.out.println("Enter Bid: ");
-			int inputTrumpValue =0;
+			int inputTrumpValue = 0;
 			try {
 				do {
-					BufferedReader br = new BufferedReader(	new InputStreamReader(System.in));
+					BufferedReader br = new BufferedReader(
+							new InputStreamReader(System.in));
 					String input = "";
 					input = br.readLine();
-						if(input.length() == 0 ) continue;
-						
+					if (input.length() == 0)
+						continue;
+
 					inputTrumpValue = Integer.parseInt(input);
-				}while ( !game.isValidBid(inputTrumpValue,firstRoundDone));
+				} while (!game.isValidBid(inputTrumpValue, firstRoundDone));
 
 			} catch (IOException e) {
 				System.err.println("Error: " + e);
 			}
 			if (firstRoundDone) {
-				if (game.getTrump().getBidOwner().getTeam().equals(p.getTeam()) && inputTrumpValue <18 ) {
+				if (game.getTrump().getBidOwner().getTeam().equals(p.getTeam())
+						&& inputTrumpValue < 18) {
 					System.out.println("Bid Placed by team member");
 					continue;
 				}
 			}
-			game.bid(p,inputTrumpValue);
-			inputTrumpValue =0;
-			if(!firstRoundDone)
+			game.bid(p, inputTrumpValue);
+			inputTrumpValue = 0;
+			if (!firstRoundDone)
 				firstRoundDone = true;
-			
-//			for (Player player : players) {
-//				player.printPlayer();
-//			}
 
 		}
 
-	}
-	
+		game.deal();
 
-	
+		for (Player player : players) {
+			player.printPlayer();
+		}
+
+	}
+
 }
