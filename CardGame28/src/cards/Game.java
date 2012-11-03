@@ -7,42 +7,35 @@ import java.util.Queue;
 public class Game {
 
 	private Queue<Player> playersInTheGame;
-	Trump trump = new Trump();
-	PlayerTurn playerTurn = new PlayerTurn();
+	Trump trump ;
+	PlayerTurn playerTurn ;
 	
-	public Game(String pName) {
+	public Game(){
 		playersInTheGame = new LinkedList<Player>();
-		Player p = new Player(pName,0);
-		playersInTheGame.add(p);
+		trump = new Trump();
+		playerTurn = new PlayerTurn();
 	}
 	
+	
 	public Game(Player player) {
+		trump = new Trump();
+		playerTurn = new PlayerTurn();
+		
 		playersInTheGame = new LinkedList<Player>();
 		playersInTheGame.add(player);
 	}
 	
 	
-	public Game joinGame(String pName) {
-		if(playersInTheGame.size()<=4) {
-			playersInTheGame.add(new Player(pName,0));
-			return this;
-		} else {
-			return new Game(pName);
-		}
-	}
-	
-	public Game joinGame(Player player) {
+	public int joinGame(Player player) {
 		if(playersInTheGame.size()<=4) {
 			playersInTheGame.add(player);
-			return this;
-		} else {
-			return new Game(player);
-		}
+		} 
+			return numPlayersInGame();
 	}
 	
 
 	
-	private void startGame() {
+	public void startGame() {
 		
 		if(this.numPlayersInGame() != 4){
 			return;
@@ -54,7 +47,7 @@ public class Game {
 		Player player;
 		
 		//Initiate Deal phase 1. Give 4 cards to each player. 
-		for(int i=0;i<16;i++){
+		for(int i=0;i<4;i++){
 			player = playersInTheGame.remove();
 			Hand hand = new Hand();
 			for(int j =0; j<4;j++){
@@ -65,10 +58,7 @@ public class Game {
 			playersInTheGame.add(player);			
 		}
 		
-		for(Player x: playersInTheGame){
-			printPlayer(x);
-		}
-		
+/*
 		//so that the first player in the queue now- is the one next to player1. 
 		player = playersInTheGame.remove();
 		playersInTheGame.add(player);
@@ -93,17 +83,9 @@ public class Game {
 				break;
 			}
 		}
-		
+		*/
 	}
 	
-
-	private void printPlayer(Player x) {
-		Hand hand = x.getMyHand();
-		List<Card> cards = hand.getMyCards();
-			for(Card card:cards){
-				System.out.println(card.toString());
-			}
-	}
 
 	private void bid(Queue<Player> playersInTheGame) {
 
@@ -120,9 +102,21 @@ public class Game {
 	public int numPlayersInGame(){
 		return playersInTheGame.size();
 	}
-	
-	
 
+
+	public Queue<Player> getPlayersInTheGame() {
+		return playersInTheGame;
+	}
+
+
+	public void setPlayersInTheGame(Queue<Player> playersInTheGame) {
+		this.playersInTheGame = playersInTheGame;
+	}
+
+	
+	
+	
+	
 }
 
 

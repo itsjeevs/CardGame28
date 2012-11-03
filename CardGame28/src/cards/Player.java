@@ -1,5 +1,7 @@
 package cards;
 
+import java.util.List;
+
 public class Player {
 
 	public Player(String name, int points) {
@@ -55,4 +57,18 @@ public class Player {
 		}
 	}
 	
+	
+
+	public void printPlayer() {
+		System.out.println("\n\n");
+		System.out.println(this.toString());
+		System.out.println("******************");
+
+		Hand hand = this.getMyHand();
+		List<Card> cards = hand.getMyCards();
+			for(Card card:cards){
+				System.out.println(card.toString());
+			}
+			
+	}
 }
