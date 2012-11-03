@@ -11,15 +11,23 @@ public class Deck implements Iterator<Object> {
 	
 	public Deck(){
 		myCardList = new ArrayList<Card>();
-	
 		for(int suit = ICard.SPADES; suit <= ICard.CLUBS; suit++){
 			for (int rank = 0; rank <8; rank++){
 				myCardList.add(new Card(suit,rank));
 			}
 		}
+		
 		shuffle();
 	}
 	
+	public void printAll(){
+		Deck deck ;
+		deck = this;
+		while(deck.hasNext()){
+			Card card = (Card) deck.next();
+			System.out.println(card.toString());
+		}
+	}
 	protected void shuffle(){
 		Collections.shuffle(myCardList);
 		myIndex = 0;

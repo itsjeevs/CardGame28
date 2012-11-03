@@ -10,14 +10,6 @@ public class TestRunner {
 	 */
 	public static void main(String[] args) {
 		Deck aDeck = new Deck();
-		Deck backupDeck = aDeck;
-		
-		while(aDeck.hasNext()){
-			Card card = (Card) aDeck.next();
-			System.out.println(card.toString());
-		}
-		
-		
 		
 		List<Team> teamList = new ArrayList<Team>(); 
 		Team team1 = new Team("Team1", 0);

@@ -8,7 +8,7 @@ public class Player {
 		this.points = points;
 		
 	}
-
+	
 	private String name;
 	private Hand myHand;
 	private int points;
