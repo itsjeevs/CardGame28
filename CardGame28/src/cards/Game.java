@@ -1,6 +1,7 @@
 package cards;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Game {
@@ -50,17 +51,22 @@ public class Game {
 		//generate a new deck. 
 		Deck deck = new Deck();
 		
-		Player player = playersInTheGame.remove();
+		Player player;
 		
 		//Initiate Deal phase 1. Give 4 cards to each player. 
 		for(int i=0;i<16;i++){
+			player = playersInTheGame.remove();
 			Hand hand = new Hand();
 			for(int j =0; j<4;j++){
 				Card card = (Card) deck.next();
 				hand.addCard(card);
 			}
 			player.setMyHand(hand);
-			
+			playersInTheGame.add(player);			
+		}
+		
+		for(Player x: playersInTheGame){
+			printPlayer(x);
 		}
 		
 		//so that the first player in the queue now- is the one next to player1. 
@@ -90,6 +96,14 @@ public class Game {
 		
 	}
 	
+
+	private void printPlayer(Player x) {
+		Hand hand = x.getMyHand();
+		List<Card> cards = hand.getMyCards();
+			for(Card card:cards){
+				System.out.println(card.toString());
+			}
+	}
 
 	private void bid(Queue<Player> playersInTheGame) {
 
