@@ -20,6 +20,27 @@ class Card implements ICard{
 		"jack","nine","ace","ten","king","queen","eight","seven"	
 	};
 
+	public static boolean isComparable(Card a, Card b){
+		if(a.getSuit() != b.getSuit()){
+			return false;
+		}
+		else
+			return true;
+	}
+	public static int isGreaterThan(Card a, Card b){
+		if(a.getMyvalue()>b.getMyvalue())
+			return 1;
+		else if(a.getMyvalue()==b.getMyvalue() ){
+			if(a.getRank() == 2 && b.getRank() == 3)
+				return 1;
+			else if(a.getRank() ==3 && b.getRank() == 2)
+				return -1;
+			else
+				return 0;
+		}
+		else
+			return -1;
+	}
 	
 	public Card() {
 		this.myvalue= 0;
@@ -60,6 +81,9 @@ class Card implements ICard{
 	}
 	public String toString(){
 		return cardDesc;
+	}
+	public String getUniqueCardValue(){
+		return rankStrings[getRank()]+"@"+ suitStrings[getSuit()];
 	}
 	
 	public int compareTo(Object o) {
