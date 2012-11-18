@@ -1,6 +1,7 @@
 package cards;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,24 +97,71 @@ public class Player {
 //	public Card aiPlay(CurrentBoard board, GameStatus status){
 	
 	public TrumpCandidate aiPlayBid() {
-		Map<Integer,Integer> sortedCards = new HashMap<Integer, Integer>();
+		Map<Integer,Float> cardsSuiteCounted = new HashMap<Integer, Float>();
+		float suiteValue = 0;
+		int suiteSelected = 0;
+		int bidValue=0;
+		Card cardSelected;
+		/*
+		 * Groups the card by suite, put into map. key- suit value(int 0-3). value- x.y(float) 
+		 * x= no of occurrence of suite(count), y= total value in the suite. 
+		 * eg: (key: 3) -> (value:2.5) means for clubs, there are 2 cards, and the sum of values
+		 * of all cards = 5(Should be a Jack and Nine. )
+		 */
+		
 		for(Card card: this.getMyHand().getMyCards()){
-			if(sortedCards.containsKey(card.getSuit())){
-				int count = sortedCards.get(card.getSuit());
-				sortedCards.put(card.getSuit(), count+1);
+			if(cardsSuiteCounted.containsKey(card.getSuit())){
+				int value = (card.getMyvalue())/10;
+				float mapValue = cardsSuiteCounted.get(card.getSuit())+ ( 1f )+ (value);
+				cardsSuiteCounted.put(card.getSuit(), mapValue);
 			}
 			else{
-				sortedCards.put(card.getSuit(), 0);
+				cardsSuiteCounted.put(card.getSuit(), 0f);
 			}
 		}
-		TrumpCandidate trumpable = calculateTrumpable();
-		return trumpable;
+		
+
+		for (Integer key : cardsSuiteCounted.keySet()) {
+			if(suiteValue < cardsSuiteCounted.get(key)){
+				suiteSelected = key;
+				suiteValue = cardsSuiteCounted.get(key);
+			}
+		}
+		/* 
+		 * After looping through all the suites in the loop, we will now know that
+		 * The suite with highest number of cards(in the hand) will be saved at suiteSelected
+		 * Now, If we have a tie, the suite with greater value will be selected.  
+		 */
+		List<Card> suiteSelectedCards = new ArrayList<Card>();
+		for(Card card: this.getMyHand().getMyCards()){
+			if(card.getSuit() == suiteSelected){
+				suiteSelectedCards.add(card);
+			}
+		}
+		Collections.sort(suiteSelectedCards);
+		
+		/*
+		 *Select the second biggest card from the suiteSelected, to set as trump. 
+		 * 
+		 */
+		
+		if(suiteSelectedCards.size() == 1)
+			cardSelected = suiteSelectedCards.get(0);
+		else
+			cardSelected = suiteSelectedCards.get(1);
+		
+		
+		if(suiteValue <=2 ) 
+			bidValue = 14;
+		else if(suiteValue <=3)
+			bidValue = 15;
+		else 
+			bidValue = 16;
+		
+		return new TrumpCandidate(cardSelected, bidValue);
 	}
 	
-	private TrumpCandidate calculateTrumpable() {
-		
-		return null;
-	}
+	
 }
 
 

@@ -5,7 +5,6 @@ import java.util.List;
 public class CurrentBoard {
 	private List<Card> cardsPlayed;
 	Player currentHolder;
-	boolean wasCut;
 	int totalPoints;
 	
 	
@@ -15,12 +14,7 @@ public class CurrentBoard {
 	public void setCurrentHolder(Player currentHolder) {
 		this.currentHolder = currentHolder;
 	}
-	public boolean isWasCut() {
-		return wasCut;
-	}
-	public void setWasCut(boolean wasCut) {
-		this.wasCut = wasCut;
-	}
+
 	public int getTotalPoints() {
 		return totalPoints;
 	}
@@ -31,13 +25,11 @@ public class CurrentBoard {
 	
 	public CurrentBoard(Player currentHolder, boolean wasCut, int totalPoints) {
 		this.currentHolder = currentHolder;
-		this.wasCut = wasCut;
 		this.totalPoints = totalPoints;
 	}
 	
 	public CurrentBoard() {
 		this.currentHolder = null;
-		this.wasCut = false;
 		this.totalPoints = 0;
 	}
 	public List<Card> getCardsPlayed() {
