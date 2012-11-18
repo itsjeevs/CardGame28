@@ -6,6 +6,14 @@ public class Trump {
 	Card trumpCard;
 	
 	
+	public Card getTrumpCard() {
+		return trumpCard;
+	}
+
+	public void setTrumpCard(Card trumpCard) {
+		this.trumpCard = trumpCard;
+	}
+
 	public int getCurrentHightestBid() {
 		return currentHightestBid;
 	}

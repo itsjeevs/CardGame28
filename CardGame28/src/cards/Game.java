@@ -103,7 +103,7 @@ public class Game {
 		} else {
 			trump.setBidOwner(p);
 			trump.setCurrentHightestBid(inputTrumpValue);
-			System.out.println("Bid of " + trump.getCurrentHightestBid() + " by " + trump.getBidOwner());
+			System.out.println("Bid of " + trump.getCurrentHightestBid() + " by " + trump.getBidOwner().getName());
 			
 		}
 	}

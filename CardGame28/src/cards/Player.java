@@ -92,8 +92,6 @@ public class Player {
 	}
 	
 	
-	
-	
 //	public Card aiPlay(CurrentBoard board, GameStatus status){
 	
 	public TrumpCandidate aiPlayBid() {
@@ -110,16 +108,18 @@ public class Player {
 		 */
 		
 		for(Card card: this.getMyHand().getMyCards()){
+			float value = card.getMyvalue();
+//			System.out.print("\n"+card.getUniqueCardValue()+"=>"+card.getMyvalue());
+			value = value /10;
+			
 			if(cardsSuiteCounted.containsKey(card.getSuit())){
-				int value = (card.getMyvalue())/10;
-				float mapValue = cardsSuiteCounted.get(card.getSuit())+ ( 1f )+ (value);
+				float mapValue = (float)cardsSuiteCounted.get(card.getSuit())+ ( 1f )+ (value);
 				cardsSuiteCounted.put(card.getSuit(), mapValue);
 			}
 			else{
-				cardsSuiteCounted.put(card.getSuit(), 0f);
+				cardsSuiteCounted.put(card.getSuit(), 1f + value);
 			}
 		}
-		
 
 		for (Integer key : cardsSuiteCounted.keySet()) {
 			if(suiteValue < cardsSuiteCounted.get(key)){
@@ -150,7 +150,7 @@ public class Player {
 		else
 			cardSelected = suiteSelectedCards.get(1);
 		
-		
+		System.out.println("\nSuiteValue: "+suiteValue);
 		if(suiteValue <=2 ) 
 			bidValue = 14;
 		else if(suiteValue <=3)
@@ -162,30 +162,13 @@ public class Player {
 	}
 	
 	
+	
+	public void describePlayer(){
+		System.out.println("Describing player: "+ this.getName());
+		System.out.print("Hand: ");
+		for(Card card:getMyHand().getMyCards()){
+			System.out.print(card.getUniqueCardValue()+", ");
+		}
+	}
 }
 
-
-class TrumpCandidate{
-	Card card;
-	int bid;
-	
-	
-	public Card getCard() {
-		return card;
-	}
-	public void setCard(Card card) {
-		this.card = card;
-	}
-	public int getBid() {
-		return bid;
-	}
-	public void setBid(int bid) {
-		this.bid = bid;
-	}
-	
-	public TrumpCandidate(Card card, int bid) {
-		super();
-		this.card = card;
-		this.bid = bid;
-	}
-}
