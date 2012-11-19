@@ -52,7 +52,6 @@ public class TestRunner {
 		boolean firstRoundDone = false;
 		for (Player p : players) {
 			TrumpCandidate trumpCandidate = new TrumpCandidate();
-			game.getPlayerTurn().setCurrentPlayer(p);
 			System.out.println(" ");
 
 			p.describePlayer();

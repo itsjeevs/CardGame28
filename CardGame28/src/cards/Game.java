@@ -11,7 +11,7 @@ public class Game {
 
 	private Queue<Player> playersInTheGame;
 	Trump trump ;
-	PlayerTurn playerTurn ;
+	public  Player currentPlayer ;
 	Deck deck;
 	int gameId;
 	Team team1;
@@ -35,7 +35,7 @@ public class Game {
 		status = GameStatus.WAIT;
 		playersInTheGame = new LinkedList<Player>();
 		trump = new Trump();
-		playerTurn = new PlayerTurn();
+		currentPlayer = null;
 		deck= new Deck() ;
 		team1= new Team("Team1", 0);
 		team2= new Team("Team2", 0);
@@ -48,7 +48,7 @@ public class Game {
 		status = GameStatus.WAIT;
 		
 		trump = new Trump();
-		playerTurn = new PlayerTurn();
+		currentPlayer = player;
 		
 		playersInTheGame = new LinkedList<Player>();
 		playersInTheGame.add(player);
@@ -133,13 +133,13 @@ public class Game {
 	}
 	
 
-	public PlayerTurn getPlayerTurn() {
-		return playerTurn;
+	public Player getPlayerTurn() {
+		return currentPlayer;
 	}
 
 
-	public void setPlayerTurn(PlayerTurn playerTurn) {
-		this.playerTurn = playerTurn;
+	public void setPlayerTurn(Player playerTurn) {
+		this.currentPlayer = playerTurn;
 	}
 
 
@@ -190,22 +190,5 @@ public class Game {
 		this.team2 = team2;
 	}
 
-
-
-	
-}
-
-
-class PlayerTurn{
-	public  Player currentPlayer ;
-
-	public  Player getCurrentPlayer() {
-		return currentPlayer;
-	}
-
-	public void setCurrentPlayer(Player currentPlayer) {
-		currentPlayer = currentPlayer;
-	}
-	
 	
 }
