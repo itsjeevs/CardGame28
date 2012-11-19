@@ -8,19 +8,22 @@ import java.util.Map;
 
 public class Player {
 
-	public Player(String name, int points) {
-		super();
-		this.name = name;
-		this.points = points;
-		myHand = new Hand();
-	}
-	
 	private String name;
 	private Hand myHand;
 	private int points;
 	private Team team;
 	private boolean isAI;
-
+	private Game gameReference;
+	
+	public Player(String name, int points, Game game) {
+		this.name = name;
+		this.points = points;
+		myHand = new Hand();
+		gameReference = game;
+		isAI = false;
+		team = null;
+	}
+	
 	public Team getTeam() {
 		return team;
 	}
@@ -180,6 +183,14 @@ public class Player {
 		for(Card card:getMyHand().getMyCards()){
 			System.out.print(card.getUniqueCardValue()+", ");
 		}
+	}
+
+	public Game getGameReference() {
+		return gameReference;
+	}
+
+	public void setGameReference(Game gameReference) {
+		this.gameReference = gameReference;
 	}
 }
 

@@ -23,7 +23,7 @@ public class TestRunner {
 		
 		for (int i = 1; i <= 4; i++) {
 			String player = "Player" + i;
-			Player aPlayer = new Player(player, 0);
+			Player aPlayer = new Player(player, 0,game);
 			aPlayer.setIsAI(true);
 			game.joinGame(aPlayer);
 			

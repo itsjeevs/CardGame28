@@ -17,6 +17,7 @@ public class Game {
 	Team team1;
 	Team team2;
 	GameStatus status;
+	CurrentBoard board;
 	
 	
 	public GameStatus getStatus() {
@@ -39,6 +40,7 @@ public class Game {
 		deck= new Deck() ;
 		team1= new Team("Team1", 0);
 		team2= new Team("Team2", 0);
+		board = new CurrentBoard();
 	}
 	
 	

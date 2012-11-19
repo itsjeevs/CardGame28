@@ -6,6 +6,7 @@ public class CurrentBoard {
 	private List<Card> cardsPlayed;
 	Player currentHolder;
 	int totalPoints;
+	private boolean wasCut;
 	
 	
 	public Player getCurrentHolder() {
@@ -26,11 +27,13 @@ public class CurrentBoard {
 	public CurrentBoard(Player currentHolder, boolean wasCut, int totalPoints) {
 		this.currentHolder = currentHolder;
 		this.totalPoints = totalPoints;
+		wasCut = false;
 	}
 	
 	public CurrentBoard() {
 		this.currentHolder = null;
 		this.totalPoints = 0;
+		wasCut = false;
 	}
 	public List<Card> getCardsPlayed() {
 		return cardsPlayed;
@@ -50,5 +53,11 @@ public class CurrentBoard {
 	
 	public int getRunningSuite(){
 		return cardsPlayed.get(0).getSuit();
+	}
+	public boolean getWasCut() {
+		return wasCut;
+	}
+	public void setWasCut(boolean wasCut) {
+		this.wasCut = wasCut;
 	}
 }
