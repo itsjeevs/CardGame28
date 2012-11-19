@@ -1,9 +1,10 @@
 package cards;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-class Card implements ICard{
+public class Card implements ICard{
 	
 	private final int mySuit;     
 	private final int myRank;
@@ -19,28 +20,58 @@ class Card implements ICard{
 	private static final String[] rankStrings = {
 		"jack","nine","ace","ten","king","queen","eight","seven"	
 	};
+	
+	public static final Map<String, String> cardMap = 
+	            Collections.unmodifiableMap(
+	                    /* This is really an anonymous 
+	                       inner class - a sub-class of j.u.HashMap */ 
+	                    new HashMap<String, String>() {
+	                        /**
+							 * had to add a generated serial id
+							 */
+							private static final long serialVersionUID = 716384016034736171L;
 
-	public static boolean isComparable(Card a, Card b){
-		if(a.getSuit() != b.getSuit()){
-			return false;
-		}
-		else
-			return true;
-	}
-	public static int isGreaterThan(Card a, Card b){
-		if(a.getMyvalue()>b.getMyvalue())
-			return 1;
-		else if(a.getMyvalue()==b.getMyvalue() ){
-			if(a.getRank() == 2 && b.getRank() == 3)
-				return 1;
-			else if(a.getRank() ==3 && b.getRank() == 2)
-				return -1;
-			else
-				return 0;
-		}
-		else
-			return -1;
-	}
+							{
+	                     	    put("jack of spades", "img/sj.png");
+	                            put("nine of spades", "img/s9.png");
+	                            put("ace of spades", "img/s1.png");
+	                            put("ten of spades", "img/s10.png");
+	                            put("king of spades", "img/sk.png");
+	                            put("queen of spades", "img/sq.png");
+	                            put("eight of spades", "img/s8.png");
+	                            put("seven of spades", "img/s7.png");
+	                            
+	                     	    put("jack of hearts", "img/hj.png");
+	                            put("nine of hearts", "img/h9.png");
+	                            put("ace of hearts", "img/h1.png");
+	                            put("ten of hearts", "img/h10.png");
+	                            put("king of hearts", "img/hk.png");
+	                            put("queen of hearts", "img/hq.png");
+	                            put("eight of hearts", "img/h8.png");
+	                            put("seven of hearts", "img/h7.png");
+	                            
+	                     	    put("jack of diamonds", "img/dj.png");
+	                            put("nine of diamonds", "img/d9.png");
+	                            put("ace of diamonds", "img/d1.png");
+	                            put("ten of diamonds", "img/d10.png");
+	                            put("king of diamonds", "img/dk.png");
+	                            put("queen of diamonds", "img/dq.png");
+	                            put("eight of diamonds", "img/d8.png");
+	                            put("seven of diamonds", "img/d7.png");
+	                            
+	                     	    put("jack of clubs", "img/cj.png");
+	                            put("nine of clubs", "img/c9.png");
+	                            put("ace of clubs", "img/c1.png");
+	                            put("ten of clubs", "img/c10.png");
+	                            put("king of clubs", "img/ck.png");
+	                            put("queen of clubs", "img/cq.png");
+	                            put("eight of clubs", "img/c8.png");
+	                            put("seven of clubs", "img/c7.png");
+	 
+							}
+
+	                    });
+
 	
 	public Card() {
 		this.myvalue= 0;
@@ -82,6 +113,7 @@ class Card implements ICard{
 	public String toString(){
 		return cardDesc;
 	}
+	
 	public String getUniqueCardValue(){
 		return rankStrings[getRank()]+"@"+ suitStrings[getSuit()];
 	}
