@@ -219,8 +219,7 @@ public class Game {
 
 
 	public Card revealTrump() {
-		board.setWasCut(true);
-		this.getTrump().setOpen(true);
+//		this.getTrump().setOpen(true);
 		return trump.getTrumpCard();
 	}
 
@@ -240,6 +239,7 @@ public class Game {
 		else {
 			
 			trumpCandidate =readTrump(p);
+//			trumpCandidate = getTrumpFromUI();
 		}
 		
 		//Whether it is ai or not, if the bid is not valid, return.
@@ -300,11 +300,17 @@ public class Game {
 	}
 
 
-	public void play(Player p) {
+	public Card play(Player p) {
 		Card played;
-		played = p.aiPlayGame();
+//		if(p.getIsAI()){
+			played = p.aiPlayGame();
+//		}
+//		else{
+//			played = DummyMethod()
+//		}
 		p.getMyHand().removeCard(played);
 		board.updateBoard(p,played);
+		return played;
 	}
 
 
