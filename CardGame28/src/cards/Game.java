@@ -243,7 +243,8 @@ public class Game {
 		else {
 			
 			trumpCandidate =readTrump(p);
-//			trumpCandidate = getTrumpFromUI();
+//TODO			
+//			trumpCandidate = CardGame.returnTrumpPlayer1();
 		}
 		
 		//Whether it is ai or not, if the bid is not valid, return.
@@ -305,13 +306,14 @@ public class Game {
 
 
 	public Card play(Player p) {
+		//TODO
 		Card played;
 //		if(p.getIsAI()){
 			describePlayerHand();
 			played = p.aiPlayGame();
 //		}
 //		else{
-//			played = DummyMethod()
+//			played = CardGame.getPlayer1PlayedCard();
 //		}
 		p.getMyHand().removeCard(played);
 		board.updateBoard(p,played);
