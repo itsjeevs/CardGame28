@@ -22,7 +22,7 @@ public class Game {
 	GameStatus status;
 	private CurrentBoard board;	
 	private int boardSuite;
-
+	private boolean justOpenedTrump;
 	
 	
 	public GameStatus getStatus() {
@@ -47,6 +47,7 @@ public class Game {
 		team2= new Team("Team2", 0);
 		setBoard(new CurrentBoard());
 		board.setGameRef(this);
+		justOpenedTrump = false;
 	}
 	
 	
@@ -62,6 +63,7 @@ public class Game {
 		playersInTheGame.add(player);
 		deck= new Deck() ;
 		board.setGameRef(this);
+		justOpenedTrump =  false;
 	}
 	
 	
@@ -219,7 +221,9 @@ public class Game {
 
 
 	public Card revealTrump() {
-//		this.getTrump().setOpen(true);
+		this.getTrump().setOpen(true);
+		this.justOpenedTrump = true;
+		
 		return trump.getTrumpCard();
 	}
 
@@ -303,6 +307,7 @@ public class Game {
 	public Card play(Player p) {
 		Card played;
 //		if(p.getIsAI()){
+			describePlayerHand();
 			played = p.aiPlayGame();
 //		}
 //		else{
@@ -313,6 +318,15 @@ public class Game {
 		return played;
 	}
 
+	public void describePlayerHand(){
+		for(Player p: getPlayersInTheGame()){
+			System.out.print(p.getName()+"=> ");
+			for(Card c: p.getMyHand().getMyCards()){
+				System.out.print(c.getUniqueCardValue()+", ");
+			}
+			System.out.println("");
+		}
+	}
 
 	public void updateProceedings() {
 		debug = true;
@@ -335,6 +349,16 @@ public class Game {
 		board = new CurrentBoard();
 		board.setGameRef(this);
 		board.setWasCut(false);
+	}
+
+
+	public boolean isJustOpenedTrump() {
+		return justOpenedTrump;
+	}
+
+
+	public void setJustOpenedTrump(boolean justOpenedTrump) {
+		this.justOpenedTrump = justOpenedTrump;
 	}
 	
 }
