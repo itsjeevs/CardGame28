@@ -11,6 +11,7 @@ public class TestRunner {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		System.out.println("Let's start the test");
 		Deck aDeck = new Deck();
 		List<Team> teamList = new ArrayList<Team>();
 		Team team1 = new Team("Team1", 0);
