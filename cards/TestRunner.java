@@ -59,9 +59,15 @@ public class TestRunner {
 		for (Player p : players) {
 			game.bid(p);
 		}
+		System.out.println(game.getTrump().getBidOwner().getName()+ 
+				" placed a bid of: "+ game.getTrump().getCurrentHightestBid() +
+				" with card: "+ game.getTrump().getTrumpCard().getPrintableCardValue());
 		
 		for(int i = 0; i<8;i++){
 			System.out.println("\n\n$$$$$$$$ ----Round :"+(i+1)+"---- $$$$$$$$");
+			Player printer = players.get(0);
+			printer.describeAllHands();
+			
 			for(Player p:players){
 				game.setPlayerTurn(p);
 				game.play(p);

@@ -310,7 +310,6 @@ public class Game {
 		//TODO
 		Card played;
 //		if(p.getIsAI()){
-			describePlayerHand();
 			played = p.aiPlayGame();
 //		}
 //		else{
@@ -321,15 +320,6 @@ public class Game {
 		return played;
 	}
 
-	public void describePlayerHand(){
-		for(Player p: getPlayersInTheGame()){
-			System.out.print(p.getName()+"=> ");
-			for(Card c: p.getMyHand().getMyCards()){
-				System.out.print(c.getUniqueCardValue()+", ");
-			}
-			System.out.println("");
-		}
-	}
 
 	public void updateProceedings() {
 		debug = true;
@@ -338,17 +328,19 @@ public class Game {
 		int totalPoints = winningTeam.getTotalPoints() + board.getTotalPoints();
 		System.out.println("");
 		if(debug) System.out.println("Winner was: "+winner.getName());
-		if(debug) System.out.println("Total Points for Team: "+winningTeam.getTeamName()+" is: "+totalPoints);
+		if(debug) System.out.println("Total Points for Team: "+winningTeam.getTeamName()+" " +
+				"is: "+totalPoints+
+				"("+ board.getTotalPoints() +")");
 		winningTeam.setTotalPoints(totalPoints);
 		
 		Player player1 = playersInTheGame.peek();
 		while(!winner.equals(player1)){
 			rotateOnce();
 			player1 = playersInTheGame.peek();
-			System.out.println("rotated once");
+			System.out.print("rotated once  | ");
 		}
 		setPlayerTurn(winner);
-		if(debug) System.out.println(playersInTheGame.peek().getName()+ " starts the next game");
+		if(debug) System.out.println("\n"+playersInTheGame.peek().getName()+ " starts the next game");
 		board = new CurrentBoard();
 		board.setGameRef(this);
 		board.setWasCut(false);

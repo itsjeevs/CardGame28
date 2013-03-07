@@ -101,6 +101,20 @@ public class Player {
 	}
 	
 	
+	
+	public void describeAllHands(){
+		
+		for(Player p:  gameReference.getPlayersInTheGame()){
+			System.out.print(p.getName()+"=> ");
+			for(Card c: p.getMyHand().getMyCards()){
+				System.out.print(c.getPrintableCardValue()+", ");
+			}
+			System.out.println("");
+		}
+	}
+	
+	
+	
 //	public Card aiPlay(CurrentBoard board, GameStatus status){
 	
 	public TrumpCandidate aiPlayBid() {
@@ -177,7 +191,7 @@ public class Player {
 		 //BoardSize = 0 means the board is empty, and I've to start the game. 
 		if( game.getBoard().getCardsPlayed().size() ==0){
 				returnCard = getBestCardToStart();
-				if(debug) System.out.println ("First card:"+ returnCard.getUniqueCardValue());
+				if(debug) System.out.println ("First card:"+ returnCard.getPrintableCardValue());
 				if(returnCard == null)
 					if(debug) System.out.println("ReturnCardNull at start");
 		}
@@ -185,12 +199,12 @@ public class Player {
 		else{
 			int suiteId = game.getBoardSuite();
 //			if(debug) System.out.println("SuiteId:"+suiteId);
-			Team team = game.getBoard().getCurrentHolder().getTeam();
-			System.out.println("I'm "+getName() +"@"+ getTeam().getTeamName() +",Hand now held by team: "+team.getTeamName());
+			Team holdingTeam = game.getBoard().getCurrentHolder().getTeam();
+			System.out.println("I'm "+getName() +"@"+ getTeam().getTeamName() +",Hand now held by team: "+holdingTeam.getTeamName());
 			wasCut = game.getBoard().getWasCut();
 			
 			//If my team holds the board, I should support. 
-			if(this.getTeam().equals(team)){
+			if(this.getTeam().equals(holdingTeam)){
 				//will first check if we have cards in suite=roundSuite.
 				if(haveRoundSuite()){
 					returnCard = getBiggestFromHand(suiteId,true);
@@ -287,10 +301,12 @@ public class Player {
 						 */
 						if(returnCard == null){
 							returnCard = getMinCardFromHand(trumpSuiteId, false);
+//							game.getTrump().getBidOwner().getMyHand().getMyCards().add(game.getTrump().getTrumpCard());
 							if(debug)
 								System.out.println("I don't have a trumpCard. Minimizing casuality with: "+returnCard.getUniqueCardValue());
 						}
 						else{
+							game.setJustOpenedTrump(true);
 							if(debug)
 								System.out.println("Cutting with trumpCard: "+returnCard.getUniqueCardValue());
 						}

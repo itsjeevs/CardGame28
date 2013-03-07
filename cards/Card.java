@@ -99,7 +99,55 @@ public class Card implements ICard{
 		cardDesc = rankStrings[getRank()]+" of "+
 	             suitStrings[getSuit()];
 	}
+	
+	public String printableRank(int rank){
+		String rankStr = rankStrings[rank];
+		switch(rankStr){
+		case "jack":
+			return "J";
+			
+		case "nine":
+			return "9";
+			
+		case "ace":
+			return "A";
+			
+		case "ten":
+			return "10";
+			
+		case "king":
+			return "K";
+			
+		case "queen":
+			return "Q";
+			
+		case "eight":
+			return "8";
+			
+		case "seven":
+			return "7";
+		
+		default:
+			return "BadCard!!";
+		}
+	}
 
+	public String descPrintableSuite(int suite){
+		String origSuite = suitStrings[getSuit()];
+		switch(origSuite){
+			case "hearts":
+				return "hrt";
+			case "diamonds":
+				return "dmnd";
+			case "spades":
+				return "spd";
+			case "clubs":
+				return "clb";
+			default:
+				return "BadSuit";
+		}
+	}
+	
 	public int getMyvalue() {
 		return myvalue;
 	}
@@ -117,6 +165,9 @@ public class Card implements ICard{
 	
 	public String getUniqueCardValue(){
 		return rankStrings[getRank()]+"@"+ suitStrings[getSuit()];
+	}
+	public String getPrintableCardValue(){
+		return printableRank(getRank())+"@"+ descPrintableSuite(getSuit());
 	}
 	
 	public int compareTo(Object o) {

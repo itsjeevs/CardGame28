@@ -82,7 +82,11 @@ public class CurrentBoard {
 			setHoldingCard(played);
 			if(debug) System.out.println("cardsPlayed.size() == 1");
 			
-		//Normal case. card belong to boardSuite, and is bigger.
+			if(gameRef.getTrump().isOpen() &&
+					played.getUniqueCardValue().equals(trumpCardRef.getUniqueCardValue())){
+				setWasCut(true);
+			}
+		//Not first card. Normal case. card belong to boardSuite, and is bigger.
 		} else if (played.getSuit() == getGameRef().getBoardSuite()
 				&& played.getRank() < holdingCard.getRank() &&
 				!wasCut) {
@@ -90,7 +94,7 @@ public class CurrentBoard {
 			setHoldingCard(played);
 			if(debug) System.out.println("played.getSuit() == getGameRef().getBoardSuite() && played.getRank() < holdingCard.getRank()");
 		
-		//cardSuite != boardSuite. cardSuite = trumpSuite.
+		//Not first card. First Cut. cardSuite != boardSuite. cardSuite = trumpSuite.
 		} else if (trumpCardRef.getSuit() == played.getSuit() &&
 				played.getSuit()!= gameRef.getBoardSuite() &&
 				getGameRef().isJustOpenedTrump() ) {
@@ -104,16 +108,17 @@ public class CurrentBoard {
 			boolean alreadyIncluded = false;
 			Player trumpOwner = gameRef.getTrump().getBidOwner();
 			for(Card card: trumpOwner.getMyHand().getMyCards()){
-				if(card.equals(trumpCardRef))
+				if(card.getUniqueCardValue().equals(trumpCardRef.getUniqueCardValue()))
 					alreadyIncluded = true;
 			}
 			
 			if(!alreadyIncluded){
-				gameRef.getTrump().getBidOwner().getMyHand().addCard(trumpCardRef);
+				trumpOwner.getMyHand().addCard(trumpCardRef);
 			}
 			
 			if(debug) System.out.println("gameRef.getTrump().getTrumpCard().getSuit() == played .getSuit() && wasCut == false");
-
+			
+		// card = trump. Was cut Earlier this round. Trump was open. Higher cut. 
 		} else if (trumpCardRef.getSuit() == played.getSuit() && 
 					wasCut && gameRef.getTrump().isOpen() &&
 					played.getRank() < getHoldingCard().getRank() ) {
@@ -122,6 +127,7 @@ public class CurrentBoard {
 				if(debug) System.out.println("played.getRank() < getHoldingCard().getRank()");
 				
 		}
+		// card = trump. New cut. Trump already open. 
 		else if (trumpCardRef.getSuit() == played.getSuit() && 
 				!wasCut && gameRef.getTrump().isOpen() ) {
 			setWasCut(true);
@@ -132,7 +138,8 @@ public class CurrentBoard {
 		}
 		debug = true;
 		if (debug){
-			System.out.println("Now holdingCard:" + getHoldingCard().getUniqueCardValue());
+			System.out.println("holdingCard:" + getHoldingCard().getUniqueCardValue() +
+					"held by: "+ currentHolder.getName());
 			System.out
 					.println("#######################################################");
 		}
