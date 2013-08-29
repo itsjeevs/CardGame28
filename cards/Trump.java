@@ -1,53 +1,50 @@
 package cards;
 
 public class Trump {
-	int currentHightestBid ;
-	Player bidOwner;
-	Card trumpCard;
-	private boolean isOpen;
-	
-	
-	public Card getTrumpCard() {
-		return trumpCard;
-	}
+    int currentHightestBid;
+    Player bidOwner;
+    Card trumpCard;
+    private boolean isOpen;
 
-	public void setTrumpCard(Card trumpCard) {
-		this.trumpCard = trumpCard;
-	}
+    public Card getTrumpCard() {
+        return trumpCard;
+    }
 
-	public int getCurrentHightestBid() {
-		return currentHightestBid;
-	}
-	
-	public void setCurrentHightestBid(int currentHightestBid) {
-		this.currentHightestBid = currentHightestBid;
-	}
-	
-	public void returnTrumpToOwner(){
-		bidOwner.getMyHand().addCard(trumpCard);
-	}
-	
-	public Player getBidOwner() {
-		return bidOwner;
-	}
-	
-	public void setBidOwner(Player bitOwner) {
-		this.bidOwner = bitOwner;
-	}
-	
-	public Trump(int currentHightestBid, Player bitOwner) {
-		super();
-		this.currentHightestBid = currentHightestBid;
-		this.bidOwner = bitOwner;
-	}
-	
-	
-	public Trump() {
-		this.currentHightestBid =13;
-		setOpen(false);
-	}
-	
-	
+    public void setTrumpCard(Card trumpCard) {
+        this.trumpCard = trumpCard;
+    }
+
+    public int getCurrentHightestBid() {
+        return currentHightestBid;
+    }
+
+    public void setCurrentHightestBid(int currentHightestBid) {
+        this.currentHightestBid = currentHightestBid;
+    }
+
+    public void returnTrumpToOwner() {
+        bidOwner.getMyHand().addCard(trumpCard);
+    }
+
+    public Player getBidOwner() {
+        return bidOwner;
+    }
+
+    public void setBidOwner(Player bitOwner) {
+        this.bidOwner = bitOwner;
+    }
+
+    public Trump(int currentHightestBid, Player bitOwner) {
+        super();
+        this.currentHightestBid = currentHightestBid;
+        this.bidOwner = bitOwner;
+    }
+
+    public Trump() {
+        this.currentHightestBid = 13;
+        setOpen(false);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -58,26 +55,21 @@ public class Trump {
         }
 
         Trump guest = (Trump) obj;
-    	if(this.currentHightestBid == guest.getCurrentHightestBid()  &&
-    		this.bidOwner.equals(guest.getBidOwner()) &&
-    		this.trumpCard.equals(guest.getTrumpCard()) )
-    		return true;
-    	else
-    		return false;
+        if (this.currentHightestBid == guest.getCurrentHightestBid() && this.bidOwner.equals(guest.getBidOwner())
+                && this.trumpCard.equals(guest.getTrumpCard())) return true;
+        else return false;
     }
 
-	public boolean isOpen() {
-		return isOpen;
-	}
+    public boolean isOpen() {
+        return isOpen;
+    }
 
-	public void setOpen(boolean isOpen) {
-		this.isOpen = isOpen;
-	}
-	
-	public void describeTrump(){
-		System.out.println("TrumpSuite: "+trumpCard.getUniqueCardValue() +" Owner: "+bidOwner.getName());
-	}
+    public void setOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
 
-	
-	
+    public void describeTrump() {
+        System.out.println("TrumpSuite: " + trumpCard.getUniqueCardValue() + " Owner: " + bidOwner.getName());
+    }
+
 }
