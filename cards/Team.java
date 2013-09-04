@@ -1,55 +1,41 @@
 package cards;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Team {
+    int points;
+    String name;
+    List<Player> players;
 
-    private String teamName;
-    private int totalPoints;
-
-    public Team(String teamName, int totalPoints) {
-        this.teamName = teamName;
-        this.totalPoints = totalPoints;
+    public Team(int points, String name, List<Player> players) {
+        super();
+        this.points = points;
+        this.name = name;
+        this.players = players;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public int getPoints() {
+        return points;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
-    public int getTotalPoints() {
-        return totalPoints;
+    public String getName() {
+        return name;
     }
 
-    public void setTotalPoints(int totalPoints) {
-        this.totalPoints = totalPoints;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getTotalPoints(ArrayList<Card> ourCards) {
-
-        int total = 0;
-        for (Card c : ourCards) {
-            total += c.getMyvalue();
-        }
-
-        return total;
+    public List<Player> getPlayers() {
+        return players;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != this.getClass()) {
-            return false;
-        }
-
-        Team guest = (Team) obj;
-        if (this.totalPoints == guest.getTotalPoints() && this.getTeamName().equals(guest.getTeamName())) return true;
-        else return false;
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
 }

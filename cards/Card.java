@@ -155,11 +155,11 @@ public class Card implements ICard {
         return cardDesc;
     }
 
-    public String getUniqueCardValue() {
+    public String descCard() {
         return rankStrings[getRank()] + "@" + suitStrings[getSuit()];
     }
 
-    public String getPrintableCardValue() {
+    public String prettyPrint() {
         return printableRank(getRank()) + "@" + descPrintableSuite(getSuit());
     }
 
